@@ -34,7 +34,10 @@ class OfferDetails extends React.Component{
     }
 
     return(
-      <OfferCard {...offer} />
+      <>
+        <button onClick={() => this.props.history.push('/')}>Back</button>
+        <OfferCard {...offer} />
+      </>
     )
   }
 }
