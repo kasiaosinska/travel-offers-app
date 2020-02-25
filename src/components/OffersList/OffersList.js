@@ -1,51 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import OfferCard from '../OfferCard';
-import debounce from "lodash.debounce";
 import { fetchListOfOffers } from '../../api';
 import { Link } from 'react-router-dom';
+import { addOffers } from "../../store/action";
 
 class OffersList extends React.Component {
   constructor(props) {
     super(props);
 
+    this.myRef = React.createRef();
     this.state = {
-      offers: [],
       perPage: 3,
       hasMore: false,
       error: false,
     };
-
-    window.onscroll = debounce(() => {
-      const {
-        getData,
-        state: {
-          error,
-          hasMore,
-        },
-      } = this;
-
-      if (error || !hasMore) return;
-
-      if (
-        window.innerHeight + document.documentElement.scrollTop
-        === document.documentElement.offsetHeight
-      ) {
-        getData();
-      }
-    }, 100);
   }
 
   componentDidMount() {
-    this.getData()
+    this.getData();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    this.myRef.current.addEventListener("scroll", () => {
+      if (this.myRef.current.scrollTop + this.myRef.current.clientHeight >= this.myRef.current.scrollHeight - 20){
+        this.getData()
+      }
+    });
   }
 
   getData = () => {
-    const { perPage, offers } = this.state;
-
+    const { perPage } = this.state;
+    const { addOffers } = this.props;
     fetchListOfOffers(perPage)
       .then((results) => {
+        addOffers(results);
         this.setState({
-          offers: [...offers, ...results],
           perPage: perPage + 3,
           hasMore: results.length === perPage
         })
@@ -59,14 +49,15 @@ class OffersList extends React.Component {
 
 
   render () {
-    const { offers, error, hasMore } = this.state;
+    const { error, hasMore } = this.state;
+    const { offers } = this.props;
 
     if (error) {
       return <p>Something went wrong :(</p>
     }
 
     return (
-      <div>
+      <div ref={this.myRef} style={{ height: "200px", overflow: "auto", backgroundColor: 'lightGray' }}>
         {offers && offers.map(offer =>
           <Link key={offer.id} to={{ pathname: `/offer/${offer.id}`}}>
             <OfferCard {...offer} />
@@ -78,5 +69,12 @@ class OffersList extends React.Component {
   }
 }
 
-export default OffersList;
+
+const mapStateToProps = offers => offers;
+
+const mapDispatchToProps = dispatch => ({
+  addOffers: payload => dispatch(addOffers(payload)),
+});
+
+export default connect(mapStateToProps ,mapDispatchToProps)(OffersList);
 
