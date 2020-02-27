@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const OfferCard = ({ title, description, image, price, discount, rating }) => {
   return (
-    <div style={{ margin: 20 }}>
+    <div style={{ margin: 20, backgroundColor: 'white', border: '1px solid grey', padding: 10 }}>
       {image && <img src={image} alt="offer" />}
       <ul>
         {title && <li>{title}</li>}

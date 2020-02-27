@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import OffersList from "./components/OffersList";
-import OfferDetails from "./components/OfferDetails";
+import OffersList from './components/OffersList';
+import OfferDetails from './components/OfferDetails';
 
 function App() {
   return (
