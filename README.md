@@ -1,3 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#TRAVEL APP
 
-It is small website with collection of travel offers. To start a project run yarn start or npm start then open http://localhost:3000 to view it in the browser.
+It is simple app that gets collection of travel offers from API and show it in infinite scroll.
+
+##To start project
+
+#### Install dependencies
+
+```bash
+npm i
+```
+
+#### Run
+
+```bash
+npm start
+```
+
+It will open automatically in http://localhost:3000

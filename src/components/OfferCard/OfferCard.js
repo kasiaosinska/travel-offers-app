@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Wrapper } from './styled';
 
 const OfferCard = ({ title, description, image, price, discount, rating }) => {
   return (
-    <div style={{ margin: 20, backgroundColor: 'white', border: '1px solid grey', padding: 10 }}>
+    <Wrapper>
       {image && <img src={image} alt="offer" />}
       <ul>
         {title && <li>{title}</li>}
@@ -12,8 +13,8 @@ const OfferCard = ({ title, description, image, price, discount, rating }) => {
         {discount && <li>Discount: {discount}</li>}
         {rating && <li>Rating: {rating}</li>}
       </ul>
-    </div>
-  )
+    </Wrapper>
+  );
 };
 
 OfferCard.propTypes = {

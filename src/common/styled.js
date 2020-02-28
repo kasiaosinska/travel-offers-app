@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 
 const load = keyframes`
   0%{
@@ -26,9 +26,9 @@ export const Spinner = styled.div`
   border-radius: 100%;
   position: relative;
   margin: 0 auto;
-  
+
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: -10px;
     left: -10px;
@@ -40,16 +40,15 @@ export const Spinner = styled.div`
     z-index: 100;
     animation: ${load} 1s infinite;
   }
-  
+
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     top: -10px;
     left: -10px;
     width: 100%;
     height: 100%;
     border-radius: 100%;
-    border: 10px solid transparent;
     border-top-color: ${props => props.color};
     border: 5px solid #ccc;
   }

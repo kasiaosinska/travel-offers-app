@@ -1,6 +1,5 @@
-export const ADD_OFFERS = 'ADD_OFFERS';
+export const LOAD_OFFERS = 'LOAD_OFFERS';
 
-export const addOffers = newOffers => {
-  return { type: ADD_OFFERS, newOffers }
+export const loadOffers = newOffers => {
+  return { type: LOAD_OFFERS, newOffers };
 };
-
